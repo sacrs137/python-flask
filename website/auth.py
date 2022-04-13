@@ -22,7 +22,7 @@ def login():
                 return redirect(url_for('views.home'))
             else:
                 flash('Algo está errado, tente novamente.', category='error')
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 
 @auth.route('/logout')
@@ -62,7 +62,8 @@ def sign_up():
                 password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
+            login_user(user, remember=True)
             flash('Conta criada com sucesso!', category='success')
             return redirect(url_for('views.home'))
 
-    return render_template("sign_up.html")
+    return render_template("sign_up.html", user=current_user)

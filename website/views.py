@@ -9,4 +9,4 @@ views = Blueprint('views', __name__)
 # essa pagina só pode ser acessada se o usuário estiver logado
 @login_required
 def home():
-    return render_template("home.html")
+    return render_template("home.html", user=current_user)

@@ -21,10 +21,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <div class="navbar-nav">
+                <!--alguns links só vão aparecer se o usuário estiver cadastrado-->
+                {% if current_user.is_authenticated %}
+                <!--<span>Hello {{ current_user.first_name }}</span>-->
+                <a class="nav-item nav-link" id="home" href="/">Home</a>
+                <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                {% else %}
                 <a class="nav-item nav-link" id="login" href="/login">Login</a>
                 <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
-                <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                <a class="nav-item nav-link" id="home" href="/">Home</a>
+                {% endif %}
             </div>
         </div>
     </nav>
