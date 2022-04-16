@@ -4,7 +4,12 @@
 <h1 align="center">Notas</h1>
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
-    <li class="list-group-item">{{ note.data }}</li>
+    <li class="list-group-item">{{ note.data }}
+        <button type="button" class="close" data-toggle="modal" data-target="#exampleModal"
+            onClick="editButton({{note.id}})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
     {% endfor %}
 </ul>
 <form method="post">
@@ -14,4 +19,31 @@
         <button type="submit" class="btn btn-primary">Adicionar Nota</button>
     </div>
 </form>
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que você deseja deletar essa nota?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="divbutton" id="divbutton">
+
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function editButton(noteId) {
+        $("#divbutton").html("<button class='btn btn-primary' onClick=deleteNote" + '(' + noteId + ')' + ">Sim</button>");
+    }
+</script>
 {% endblock %}

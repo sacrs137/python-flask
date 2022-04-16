@@ -50,8 +50,8 @@ def sign_up():
         # checando informações do usuário
         elif len(email) < 4:
             flash('Email precisa conter mais de 4 caracteres.', category='error')
-        # elif len(first_name) < 2:
-            #flash('Nome precisa conter mais de 1 caracter.', category='error')
+        elif len(first_name) < 2:
+            flash('Nome precisa conter mais de 1 caracter.', category='error')
         elif password1 != password2:
             flash('Senhas diferentes.', category='error')
         elif len(password1) < 4:
