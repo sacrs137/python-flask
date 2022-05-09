@@ -15,6 +15,8 @@ def login():
 
         # checar se as informações são válidas
         user = User.query.filter_by(email=email).first()
+        if not user:
+            flash('Usuário não cadastrado!', category='error')
         if user:
             if check_password_hash(user.password, password):
                 flash('Login realizado com sucesso!', category='success')
@@ -23,6 +25,7 @@ def login():
             else:
                 flash('Algo está errado, tente novamente.', category='error')
     return render_template("login.html", user=current_user)
+
 
 
 @auth.route('/logout')
@@ -62,7 +65,7 @@ def sign_up():
                 password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             flash('Conta criada com sucesso!', category='success')
             return redirect(url_for('views.home'))
 

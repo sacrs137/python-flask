@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock%}
 {% block content %}
+        <h2 class="saudacao">Olá {{ current_user.first_name }}!</h2>
 <h1 align="center">Notas</h1>
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
@@ -46,4 +47,9 @@
         $("#divbutton").html("<button class='btn btn-primary' onClick=deleteNote" + '(' + noteId + ')' + ">Sim</button>");
     }
 </script>
+<style>
+    .saudacao {
+        margin-top: 10px;
+    }
+</style>
 {% endblock %}
